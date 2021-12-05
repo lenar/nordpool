@@ -132,6 +132,8 @@ async def _dry_setup(hass: HomeAssistant, config: Config) -> bool:
                 api._data[curr]["tomorrow"] = {}
 
             async_dispatcher_send(hass, EVENT_NEW_DATA)
+            await api.update_tomorrow(n)
+            async_dispatcher_send(hass, EVENT_NEW_DATA)
 
         async def new_hr(n):
             """Callback to tell the sensors to update on a new hour."""
